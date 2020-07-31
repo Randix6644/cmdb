@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand />
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="22d7a0fb-aa23-4a01-832a-3fa670a5568c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/Scam.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/disk.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/health.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/host.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/idc.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/mapping.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/network.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/models/project.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/serializer/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/serializer/host.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/serializer/network.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/task/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/task/hosts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/task/inventory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/task/playbooks/initialize.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/task/sync.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/task/test.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/task/test1.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/viewset/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/asset/viewset/host.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmdb/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmdb/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmdb/models/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmdb/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmdb/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cmdb/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/auth.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/fields.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/filters.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/middleware.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/mixins.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/models.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/paginations.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/serializers.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common/viewsets.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/configs/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/configs/config.ini" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/configs/config.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/factory.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/sdk.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/controller/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/dao.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/datetime.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/decorator.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/general.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/utils/metaclass.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1ecCXC66GXNF7Lh3mxFvZNQFqzY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/asset/task" />
+    <property name="settings.editor.selected.configurable" value="http.proxy" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset/task" />
+      <recent name="$PROJECT_DIR$/asset" />
+      <recent name="$PROJECT_DIR$/sys_collector/models" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Fuck/sys_collector" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/asset/task" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.sdk">
+    <configuration default="true" type="DjangoTestsConfigurationType">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="TARGET" value="" />
+      <option name="SETTINGS_FILE" value="" />
+      <option name="CUSTOM_SETTINGS" value="false" />
+      <option name="USE_OPTIONS" value="false" />
+      <option name="OPTIONS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyBehaveRunConfigurationType" factoryName="Behave">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PyLettuceRunConfigurationType" factoryName="Lettuce">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="ADDITIONAL_ARGS" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sdk" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controller" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/sdk.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Scam" type="Python.DjangoServer" factoryName="Django server">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.DjangoServer" factoryName="Django server">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Python.FlaskServer">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.sdk" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="22d7a0fb-aa23-4a01-832a-3fa670a5568c" name="Default Changelist" comment="" />
+      <created>1594611531543</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1594611531543</updated>
+      <workItem from="1594611653261" duration="5436000" />
+      <workItem from="1594626238274" duration="8550000" />
+      <workItem from="1595557703861" duration="63251000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2635" y="134" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595575385497">
+      <screen x="1920" y="-171" width="1920" height="993" />
+    </state>
+    <state x="2635" y="134" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595575385497" />
+    <state width="1878" height="292" key="GridCell.Tab.0.bottom" timestamp="1596179694355">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596179694355" />
+    <state width="1878" height="305" key="GridCell.Tab.0.bottom/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002504" />
+    <state width="1878" height="192" key="GridCell.Tab.0.bottom/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692421" />
+    <state width="1878" height="288" key="GridCell.Tab.0.bottom/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234184" />
+    <state width="1878" height="292" key="GridCell.Tab.0.center" timestamp="1596179694352">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="292" key="GridCell.Tab.0.center/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596179694352" />
+    <state width="1878" height="305" key="GridCell.Tab.0.center/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002503" />
+    <state width="1878" height="192" key="GridCell.Tab.0.center/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692421" />
+    <state width="1878" height="288" key="GridCell.Tab.0.center/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234183" />
+    <state width="1878" height="292" key="GridCell.Tab.0.left" timestamp="1596179694350">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="292" key="GridCell.Tab.0.left/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596179694350" />
+    <state width="1878" height="305" key="GridCell.Tab.0.left/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002503" />
+    <state width="1878" height="192" key="GridCell.Tab.0.left/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692420" />
+    <state width="1878" height="288" key="GridCell.Tab.0.left/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234183" />
+    <state width="1878" height="292" key="GridCell.Tab.0.right" timestamp="1596179694354">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="1878" height="292" key="GridCell.Tab.0.right/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596179694354" />
+    <state width="1878" height="305" key="GridCell.Tab.0.right/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002504" />
+    <state width="1878" height="192" key="GridCell.Tab.0.right/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692421" />
+    <state width="1878" height="288" key="GridCell.Tab.0.right/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234184" />
+    <state width="1878" height="332" key="GridCell.Tab.1.bottom" timestamp="1595816180409">
+      <screen x="1920" y="-171" width="1920" height="993" />
+    </state>
+    <state width="1878" height="332" key="GridCell.Tab.1.bottom/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
+    <state width="1878" height="332" key="GridCell.Tab.1.center" timestamp="1595816180409">
+      <screen x="1920" y="-171" width="1920" height="993" />
+    </state>
+    <state width="1878" height="332" key="GridCell.Tab.1.center/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
+    <state width="1878" height="332" key="GridCell.Tab.1.left" timestamp="1595816180409">
+      <screen x="1920" y="-171" width="1920" height="993" />
+    </state>
+    <state width="1878" height="332" key="GridCell.Tab.1.left/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
+    <state width="1878" height="332" key="GridCell.Tab.1.right" timestamp="1595816180409">
+      <screen x="1920" y="-171" width="1920" height="993" />
+    </state>
+    <state width="1878" height="332" key="GridCell.Tab.1.right/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
+    <state x="2389" y="-33" key="SettingsEditor" timestamp="1594611851622">
+      <screen x="1920" y="-171" width="1920" height="999" />
+    </state>
+    <state x="2389" y="-33" key="SettingsEditor/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594611851622" />
+    <state x="2545" y="48" width="670" height="676" key="search.everywhere.popup" timestamp="1595813079738">
+      <screen x="1920" y="-171" width="1920" height="993" />
+    </state>
+    <state x="2545" y="48" width="670" height="676" key="search.everywhere.popup/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595813079738" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../venv/Scam/lib/python3.8/site-packages/ansible/executor/task_result.py</url>
+          <line>153</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="PythonConfigurationType">
+        <watch expression="self._host" language="Python" />
+        <watch expression="self._task" language="Python" />
+        <watch expression="type(self._host)" language="Python" />
+        <watch expression="result.task_name" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Scam$collect.coverage" NAME="collect Coverage Results" MODIFIED="1596003960740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/controller" />
+  </component>
+</project>

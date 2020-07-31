@@ -1,0 +1,28 @@
+---
+ - hosts: all
+   tasks:
+   - name: hostname
+     set_fact:
+       host_name: "{{ ansible_hostname }}"
+
+   - name: network
+     set_fact:
+       ip: "{{ ansible_all_ipv4_addresses }}"
+       interface: "{{ ansible_interfaces }}"
+       gw: "{{ ansible_default_ipv4.gateway }}"
+
+   - name: OS and Kernel info
+     set_fact:
+       distribution: "{{ ansible_distribution }}"
+       release: "{{ ansible_distribution_release }}"
+       distribution_version: "{{ ansible_distribution_version }}"
+       kernel: "{{ ansible_kernel }}"
+       architecture: "{{ ansible_architecture }}"
+
+   - name: Hardware
+     set_fact:
+       cpu: "{{ ansible_processor }}"
+       cores: "{{ ansible_processor_cores }}"
+       ram: "{{ ansible_memtotal_mb }}"
+       swap: "{{ ansible_memory_mb.swap.total }}"
+       disk: "{{ hostvars[inventory_hostname].ansible_devices }}"

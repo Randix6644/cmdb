@@ -1,0 +1,5 @@
+---
+ - hosts: localhost
+   tasks:
+   - name: ssh-copy-id
+     command: sshpass -p {{ password }} ssh-copy-id {{ user }}@{{ server }}
