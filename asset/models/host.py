@@ -14,7 +14,7 @@ class Host(ManageModel):
         db_table = 'host'
         verbose_name = '主机身份信息'
         unique_together = ('name', 'project')
-        # ordering = ('-month', 'csp', 'project')
+        # ordering = ('-created_at', 'csp', 'project')
 
     name = models.CharField(unique=True, max_length=64, verbose_name='主机名称')
     username = models.CharField(max_length=32, verbose_name='系统用户名称')

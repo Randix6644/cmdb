@@ -1,11 +1,11 @@
 from django.db import models
-from common.models import DisplayModel
+from common.models import ManageModel
 
 
 __all__ = ['Project']
 
 
-class Project(DisplayModel):
+class Project(ManageModel):
     class Meta:
         db_table = 'project'
         verbose_name = '项目'

@@ -7,7 +7,8 @@ from rest_framework.exceptions import ValidationError
 __all__ = [
     'JsonField',
     'JsonListField',
-    'TypeIntegerField'
+    'TypeIntegerField',
+    'LogicalForeignField'
 ]
 
 
@@ -88,7 +89,7 @@ class LogicalForeignField(CharField):
     def __init__(self, model, display_fields=None, **kwargs):
         self.model = model
         self.display_fields = display_fields
-        kwargs['allow_blank'] =  False
+        kwargs['allow_blank'] = False
         kwargs['trim_whitespace'] = True
         kwargs['max_length'] = 32
         kwargs['min_length'] = 32

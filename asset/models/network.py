@@ -1,10 +1,12 @@
 from django.db import models
 from .host import *
-from common.models import DisplayModel
+from common.models import ManageModel
 from utils.dao import QueryObjectError
 
+__all__ = ['IP']
 
-class IP(DisplayModel):
+
+class IP(ManageModel):
     class Meta:
         db_table = 'ip'
         unique_together = (('address', 'host'),)
@@ -12,9 +14,9 @@ class IP(DisplayModel):
     type = models.CharField(max_length=255, verbose_name='ip类型')
     bandwidth = models.IntegerField(null=True, verbose_name='带宽大小')
     status = models.CharField(max_length=100, null=True, verbose_name='状态')
-    idc = models.IntegerField(null=False, blank=False, verbose_name='供应商')
 
     # 逻辑外键
+    idc = models.IntegerField(null=False, blank=False, verbose_name='供应商')
     parent = models.CharField(index=True, max_length=255, verbose_name='宿主机IP')
     host = models.CharField(index=True, max_length=255, verbose_name='主机UUID')
 

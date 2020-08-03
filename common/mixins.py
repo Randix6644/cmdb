@@ -99,9 +99,8 @@ def normalized_exception_handler(exc: Exception, context: dict):
     # 返回错误响应
     return response
 
-##### 列表路由的处理混合 #####
 
-
+# 列表路由的处理混合
 class ListModelMixin:
     """
     模型对象列表查询
