@@ -331,6 +331,7 @@ class CreateModelMixin:
 
         # 验证数据并执行创建
         serializer.is_valid(raise_exception=True)
+
         self.perform_create(serializer)
 
         # 返回响应

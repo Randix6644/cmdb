@@ -15,3 +15,4 @@ class IDCViewSet(BulkManageViewSet):
     queryset = IDC.objects.all()
     serializer_class = IDCSerializer
     lookup_field = 'uuid'
+    search_fields = ('name',)

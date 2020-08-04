@@ -1,0 +1,23 @@
+### OSX ###
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### pycharm ###
+.idea
+
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__
+**/migrations/*
+!**/migrations/__init__.py
+venv
+
+### custom ###
+config.ini
+uwsgi.ini
+*.out
+*.pid
+

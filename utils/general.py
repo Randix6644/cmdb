@@ -1,7 +1,10 @@
 from typing import AnyStr, Union, Optional
 from importlib import import_module
 from django.conf import settings
-import json, uuid, logging
+import bcrypt
+import json
+import uuid
+import logging
 
 
 __all__ = [
@@ -81,3 +84,15 @@ def generate_unique_uuid() -> str:
     """
     uuid_hex = uuid.uuid1().hex
     return uuid_hex
+
+
+def get_hashed_password(plain_text_password):
+    # Hash a password for the first time
+    #   (Using bcrypt, the salt is saved into the hash itself)
+    return bcrypt.hashpw(plain_text_password, bcrypt.gensalt(6))
+
+
+def check_password(plain_text_password, hashed_password):
+    # Check hashed password. Using bcrypt, the salt is saved into the hash
+    # itself
+    return bcrypt.checkpw(plain_text_password, hashed_password)

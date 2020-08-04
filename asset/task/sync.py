@@ -1,6 +1,4 @@
-from controller.configs import *
-from asset.models import *
-
+from cmdb.configs import *
 
 playbooks = cfg.get(
     'ansible',

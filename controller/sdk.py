@@ -6,9 +6,9 @@ from ansible.executor.playbook_executor import PlaybookExecutor
 from ansible.parsing.dataloader import DataLoader
 from ansible.inventory.manager import InventoryManager
 from ansible.vars.manager import VariableManager
-# from ansible.executor.task_result import TaskResult
-# from ansible.inventory.host import Host
 from typing import List, Type
+
+__all__ = ['ModelResultsCollector', 'PBExecutor']
 
 
 class ModelResultsCollector(CallbackBase):
@@ -19,7 +19,6 @@ class ModelResultsCollector(CallbackBase):
         self.host_failed = {}
 
     def v2_runner_on_unreachable(self, rst):
-        print('shit')
         self.host_unreachable[rst._host.get_name()] = rst
 
     def v2_runner_on_ok(self, rst):
@@ -47,6 +46,10 @@ class PBExecutor:
 
     def __call__(self, *args, **kwargs):
         loader = DataLoader()
+        user = kwargs.get('user', 'root')
+        become = kwargs.get('become', False)
+        become_method = kwargs.get('become_method', None)
+        become_user = kwargs.get('become_user', None)
         context.CLIARGS = ImmutableDict(
             tags={},
             listtags=False,
@@ -56,15 +59,15 @@ class PBExecutor:
             connection='ssh',
             module_path=None,
             forks=100,
-            remote_user='root',
+            remote_user=user,
             private_key_file=None,
             ssh_common_args=None,
             ssh_extra_args=None,
             sftp_extra_args=None,
             scp_extra_args=None,
-            become=True,
-            become_method='sudo',
-            become_user='root',
+            become=become,
+            become_method=become_method,
+            become_user=become_user,
             verbosity=True,
             check=False,
             start_at_task=None)
@@ -92,11 +95,12 @@ class PBExecutor:
         pb_ex.run()
         return self.cb
 
-
-callback = ModelResultsCollector()
-res = PBExecutor(
-    ['/Users/randix/work/python_projects/cmdb/asset/task/test1.yml'],
-    ['124.71.104.101', '47.106.12.55'], callback)()
+#
+# callback = ModelResultsCollector()
+# res = PBExecutor(
+#     ['/Users/randix/work/python_projects/cmdb/asset/task/facts.yml'],
+#     ['124.71.104.101', '47.106.12.55'], callback)()
+#
 
 
 # class Processor:
@@ -124,8 +128,8 @@ res = PBExecutor(
 #
 #     def get_unreachable(self):
 #         pass
-
-
+#
+#
 # for host, result in res.host_failed.items():
 #     result_raw['failed'][host] = result._result
 # for host, result in res.host_unreachable.items():

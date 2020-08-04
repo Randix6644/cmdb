@@ -4,17 +4,19 @@ from cmdb.settings import BASE_DIR
 import os
 from .sdk import PBExecutor, ModelResultsCollector, CallbackBase
 
+__all__ = ['CollectorFactory', 'LinuxCollectorFactory']
+
 
 class CollectorFactory:
     def create_collector(self) -> Collector:
         pass
 
-    def exec(self, hosts, playbooks, extra_args=None) -> dict:
+    def exec(self, hosts, playbooks, extra_args=None, **kwargs) -> dict:
         creator = self.create_collector()
         creator.callback = ModelResultsCollector()
         creator.hosts = hosts
         creator.playbooks = playbooks
-        creator.execute(extra_args)
+        creator.execute(extra_args, **kwargs)
         creator.set_ok()
         creator.set_failed()
         creator.set_unreachable()
@@ -33,9 +35,6 @@ class Collector(ABC):
     _callback = None
     hosts = []
     _pbs = None
-
-    def __init__(self, *args, **kwargs):
-        pass
 
     @property
     def result(self):
@@ -64,7 +63,7 @@ class Collector(ABC):
         self._callback = callback
 
     @abstractmethod
-    def execute(self, extra_args: dict = None):
+    def execute(self, extra_args: dict = None, **kwargs):
         pass
 
     @abstractmethod
@@ -81,13 +80,13 @@ class Collector(ABC):
 
 
 class LinuxCollector(Collector):
-    def execute(self, extra_args: dict = None):
+    def execute(self, extra_args: dict = None, **kwargs):
         self._res = PBExecutor(
             self.playbooks,
             self.hosts,
             self.callback,
             extra_args
-        )()
+        )(**kwargs)
 
     def set_ok(self):
         for host, result in self._res.host_ok.items():

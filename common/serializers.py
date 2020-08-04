@@ -19,7 +19,6 @@ class BaseSerializer(ModelSerializer):
     """
     基础序列化器
     """
-
     def save(self, **kwargs):
         """
         重写保存逻辑，加入基础模型中的预处理和后处理
@@ -146,7 +145,6 @@ class BulkSerializerMixin(object):
             id_field = self.fields[id_attr]
             id_value = id_field.get_value(data)
             ret[id_attr] = id_value
-
         return ret
 
 

@@ -15,3 +15,9 @@ class IPViewSet(BulkManageViewSet):
     queryset = IP.objects.all()
     serializer_class = IPSerializer
     lookup_field = 'uuid'
+    search_fields = ('=address', '=host', '=parent')
+
+
+    def fuck(self):
+        pass
+

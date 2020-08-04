@@ -17,8 +17,8 @@ class IP(ManageModel):
 
     # 逻辑外键
     idc = models.IntegerField(null=False, blank=False, verbose_name='供应商')
-    parent = models.CharField(index=True, max_length=255, verbose_name='宿主机IP')
-    host = models.CharField(index=True, max_length=255, verbose_name='主机UUID')
+    parent = models.CharField(max_length=255, verbose_name='宿主机IP')
+    host = models.CharField(db_index=True, null=False, blank=False, max_length=255, verbose_name='主机UUID')
 
     def pre_create(self, data: dict):
         parent_ip = data.get('parent')
