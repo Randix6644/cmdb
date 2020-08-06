@@ -11,7 +11,7 @@
        interface: "{{ ansible_interfaces }}"
        gw: "{{ ansible_default_ipv4.gateway }}"
 
-   - name: OS and Kernel info
+   - name: OS
      set_fact:
        distribution: "{{ ansible_distribution }}"
        release: "{{ ansible_distribution_release }}"
@@ -19,7 +19,7 @@
        kernel: "{{ ansible_kernel }}"
        architecture: "{{ ansible_architecture }}"
 
-   - name: Hardware
+   - name: hardware
      set_fact:
        cpu: "{{ ansible_processor }}"
        cores: "{{ ansible_processor_cores }}"

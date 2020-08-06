@@ -2,4 +2,6 @@
  - hosts: localhost
    tasks:
    - name: ssh-copy-id
-     command: sshpass -p {{ password }} ssh-copy-id -o StrictHostKeyChecking=no {{ user }}@{{ server }}
+     command: sshpass -p {{ password }} ssh-copy-id -o StrictHostKeyChecking=no -p {{ sshport }} {{ user }}@{{ server }}
+     register: cmd_rst
+     failed_when: cmd_rst.rc != 0

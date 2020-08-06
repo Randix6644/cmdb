@@ -3,6 +3,7 @@ from importlib import import_module
 from django.conf import settings
 import bcrypt
 import json
+import hashlib
 import uuid
 import logging
 
@@ -12,7 +13,9 @@ __all__ = [
     'safe_json_dumps',
     'safe_json_loads',
     'dynamic_import_class',
-    'generate_unique_uuid'
+    'generate_unique_uuid',
+    'hash_string',
+    'check_hash'
 ]
 
 
@@ -96,3 +99,14 @@ def check_password(plain_text_password, hashed_password):
     # Check hashed password. Using bcrypt, the salt is saved into the hash
     # itself
     return bcrypt.checkpw(plain_text_password, hashed_password)
+
+
+def hash_string(s):
+    h = hashlib.md5()
+    h.update(s.encode('utf-8'))
+    return h.hexdigest()
+
+
+def check_hash(plain, hashed):
+    if hash_string(plain) == hashed:
+        return True

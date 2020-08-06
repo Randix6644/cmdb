@@ -5,6 +5,6 @@ __all__ = ['cfg']
 
 
 cfg = ConfigParser()
-cfg.read('./config.ini')
+cfg.read('cmdb/configs/config.ini')
 
 

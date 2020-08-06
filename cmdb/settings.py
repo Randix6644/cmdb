@@ -20,7 +20,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 配置目录和创建
 LOG_DIR = os.path.join(BASE_DIR, 'logs/')
-EXCEL_FILE_DIR = os.path.join(BASE_DIR, 'excel_files/')
 
 if not os.path.exists(LOG_DIR):
     os.makedirs(LOG_DIR, 0o755)
@@ -44,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
     'controller',
+    'rest_framework',
     'asset'
 ]
 

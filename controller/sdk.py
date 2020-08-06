@@ -18,16 +18,23 @@ class ModelResultsCollector(CallbackBase):
         self.host_unreachable = {}
         self.host_failed = {}
 
+    def gather_result(self, status, rst):
+        try:
+            d = getattr(self, f'host_{status}')
+        except AttributeError as e:
+            raise Exception('invalid status')
+        if not d.get(rst._host.get_name()):
+            d[rst._host.get_name()] = {}
+        d[rst._host.get_name()][rst.task_name] = rst
+
     def v2_runner_on_unreachable(self, rst):
-        self.host_unreachable[rst._host.get_name()] = rst
+        self.gather_result('unreachable', rst)
 
     def v2_runner_on_ok(self, rst):
-        if not self.host_ok.get(rst._host.get_name()):
-            self.host_ok[rst._host.get_name()] = []
-        self.host_ok[rst._host.get_name()].append(rst)
+        self.gather_result('ok', rst)
 
     def v2_runner_on_failed(self, rst, ignore_errors=False):
-        self.host_failed[rst._host.get_name()] = rst
+        self.gather_result('failed', rst)
 
 
 class PBExecutor:
@@ -77,7 +84,7 @@ class PBExecutor:
                 self.inventory,))
         inventory.add_group('once')
         for host in self.hosts:
-            inventory.add_host(host=host, group='once')
+            inventory.add_host(host=host.split(':')[0], port=host.split(':')[1], group='once')
         variable_manager = VariableManager(
             loader=loader,
             inventory=inventory,
@@ -95,43 +102,3 @@ class PBExecutor:
         pb_ex.run()
         return self.cb
 
-#
-# callback = ModelResultsCollector()
-# res = PBExecutor(
-#     ['/Users/randix/work/python_projects/cmdb/asset/task/facts.yml'],
-#     ['124.71.104.101', '47.106.12.55'], callback)()
-#
-
-
-# class Processor:
-#     def __init__(self, res):
-#         self._result_raw = {'success': {}, 'failed': {}, 'unreachable': {}}
-#         self.res = res
-#
-#     @property
-#     def result(self):
-#         return self._result_raw
-#
-#     def get_ok(self):
-#         for host, result in self.res.host_ok.items():
-#             self._result_raw['success'][host] = {}
-#             for i in range(0, len(result)):
-#                 if i == 0:
-#                     continue
-#                 if not result[i]._result.get('ansible_facts'):
-#                     continue
-#                 for k, v in result[i]._result.get('ansible_facts').items():
-#                     self._result_raw['success'][host][k] = v
-#
-#     def get_failed(self):
-#         pass
-#
-#     def get_unreachable(self):
-#         pass
-#
-#
-# for host, result in res.host_failed.items():
-#     result_raw['failed'][host] = result._result
-# for host, result in res.host_unreachable.items():
-#     result_raw['unreachable'][host] = result._result
-#

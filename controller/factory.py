@@ -38,7 +38,7 @@ class Collector(ABC):
 
     @property
     def result(self):
-        return self._res
+        return self._result_raw
 
     @property
     def playbooks(self):
@@ -91,16 +91,28 @@ class LinuxCollector(Collector):
     def set_ok(self):
         for host, result in self._res.host_ok.items():
             self._result_raw['success'][host] = {}
-            for i in range(0, len(result)):
-                if i == 0:
+            for task_name, fact in result.items():
+                if task_name == 'Gathering Facts':
                     continue
-                if not result[i]._result.get('ansible_facts'):
+                af = fact._result.get('ansible_facts')
+                if not af:
                     continue
-                for k, v in result[i]._result.get('ansible_facts').items():
+                for k, v in af.items():
                     self._result_raw['success'][host][k] = v
 
     def set_failed(self):
-        pass
+        for host, result in self._res.host_failed.items():
+            self._result_raw['failed'][host] = {}
+            for task_name, fact in result.items():
+                if fact._result.get('stderr'):
+                    raise Exception(f'failed to execute task{task_name} on {host}, err:{fact._result.get("stderr")}')
+                    # self._result_raw['failed'][host][task_name] = fact._result.get(
+                    #     'stderr')
 
     def set_unreachable(self):
-        pass
+        for host, result in self._res.host_unreachable.items():
+            self._result_raw['unreachable'][host] = {}
+            for task_name, fact in result.items():
+                raise Exception(f'failed to execute task{task_name}, err: host:{host} unreachable')
+                # if not fact._result:
+                #     break

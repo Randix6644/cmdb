@@ -86,9 +86,10 @@ class LogicalForeignField(CharField):
     逻辑外键字段
     """
 
-    def __init__(self, model, display_fields=None, **kwargs):
+    def __init__(self, model, display_fields=None, exclude_fields=None, **kwargs):
         self.model = model
         self.display_fields = display_fields
+        self.exclude_fields = exclude_fields
         kwargs['allow_blank'] = False
         kwargs['trim_whitespace'] = True
         kwargs['max_length'] = 32
@@ -114,6 +115,9 @@ class LogicalForeignField(CharField):
         if self.display_fields is None:
             d = obj.__dict__
             del d['_state']
+            if self.exclude_fields:
+                for i in self.exclude_fields:
+                    del d[i]
             return d
         else:
             return {

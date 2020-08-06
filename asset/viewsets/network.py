@@ -18,6 +18,4 @@ class IPViewSet(BulkManageViewSet):
     search_fields = ('=address', '=host', '=parent')
 
 
-    def fuck(self):
-        pass
 

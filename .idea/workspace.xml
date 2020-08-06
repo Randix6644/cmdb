@@ -68,6 +68,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DjangoConsoleOptions" custom-start-script="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)">
+    <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -90,7 +93,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/asset/task" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../cmdb" />
     <property name="settings.editor.selected.configurable" value="http.proxy" />
   </component>
   <component name="RecentsManager">
@@ -102,11 +105,12 @@
       <recent name="$PROJECT_DIR$/sys_collector/models" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../cmdb" />
       <recent name="$PROJECT_DIR$/asset/task" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.sdk">
+  <component name="RunManager" selected="Python.manage">
     <configuration default="true" type="DjangoTestsConfigurationType">
       <module name="cmdb" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,7 +179,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="sdk" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="cmdb" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -183,12 +187,44 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/controller" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../cmdb/" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/controller/sdk.py" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../cmdb/manage.py" />
+      <option name="PARAMETERS" value="runserver 0.0.0.0:8888" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="cmdb" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../cmdb" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../cmdb/test.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -302,9 +338,15 @@
       <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Django Server.Scam" />
+      <item itemvalue="Python.manage" />
+      <item itemvalue="Python.test" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.sdk" />
+        <item itemvalue="Python.manage" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -320,7 +362,7 @@
       <updated>1594611531543</updated>
       <workItem from="1594611653261" duration="5436000" />
       <workItem from="1594626238274" duration="8550000" />
-      <workItem from="1595557703861" duration="90556000" />
+      <workItem from="1595557703861" duration="138983000" />
     </task>
     <servers />
   </component>
@@ -339,62 +381,111 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
+    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1596589807916">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="424" y="202" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596589807916" />
     <state x="2635" y="134" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595575385497">
       <screen x="1920" y="-171" width="1920" height="993" />
     </state>
     <state x="2635" y="134" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595575385497" />
-    <state width="1878" height="292" key="GridCell.Tab.0.bottom" timestamp="1596524350250">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1878" height="213" key="GridCell.Tab.0.bottom" timestamp="1596706532543">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
-    <state width="1878" height="292" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596524350250" />
+    <state width="1878" height="391" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618240416" />
+    <state width="1878" height="213" key="GridCell.Tab.0.bottom/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706532543" />
+    <state width="1878" height="292" key="GridCell.Tab.0.bottom/0.23.1920.1057/1920.-171.1920.989@1920.-171.1920.989" timestamp="1596621754153" />
     <state width="1878" height="305" key="GridCell.Tab.0.bottom/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002504" />
     <state width="1878" height="192" key="GridCell.Tab.0.bottom/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692421" />
+    <state width="1878" height="292" key="GridCell.Tab.0.bottom/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596623288365" />
     <state width="1878" height="288" key="GridCell.Tab.0.bottom/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234184" />
-    <state width="1878" height="292" key="GridCell.Tab.0.center" timestamp="1596524350248">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1878" height="213" key="GridCell.Tab.0.center" timestamp="1596706532542">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
-    <state width="1878" height="292" key="GridCell.Tab.0.center/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596524350248" />
+    <state width="1878" height="391" key="GridCell.Tab.0.center/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618240414" />
+    <state width="1878" height="213" key="GridCell.Tab.0.center/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706532542" />
+    <state width="1878" height="292" key="GridCell.Tab.0.center/0.23.1920.1057/1920.-171.1920.989@1920.-171.1920.989" timestamp="1596621754152" />
     <state width="1878" height="305" key="GridCell.Tab.0.center/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002503" />
     <state width="1878" height="192" key="GridCell.Tab.0.center/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692421" />
+    <state width="1878" height="292" key="GridCell.Tab.0.center/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596623288363" />
     <state width="1878" height="288" key="GridCell.Tab.0.center/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234183" />
-    <state width="1878" height="292" key="GridCell.Tab.0.left" timestamp="1596524350248">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1878" height="213" key="GridCell.Tab.0.left" timestamp="1596706532541">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
-    <state width="1878" height="292" key="GridCell.Tab.0.left/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596524350248" />
+    <state width="1878" height="391" key="GridCell.Tab.0.left/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618240413" />
+    <state width="1878" height="213" key="GridCell.Tab.0.left/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706532541" />
+    <state width="1878" height="292" key="GridCell.Tab.0.left/0.23.1920.1057/1920.-171.1920.989@1920.-171.1920.989" timestamp="1596621754151" />
     <state width="1878" height="305" key="GridCell.Tab.0.left/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002503" />
     <state width="1878" height="192" key="GridCell.Tab.0.left/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692420" />
+    <state width="1878" height="292" key="GridCell.Tab.0.left/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596623288361" />
     <state width="1878" height="288" key="GridCell.Tab.0.left/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234183" />
-    <state width="1878" height="292" key="GridCell.Tab.0.right" timestamp="1596524350250">
-      <screen x="0" y="0" width="1920" height="1080" />
+    <state width="1878" height="213" key="GridCell.Tab.0.right" timestamp="1596706532542">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
-    <state width="1878" height="292" key="GridCell.Tab.0.right/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596524350250" />
+    <state width="1878" height="391" key="GridCell.Tab.0.right/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618240415" />
+    <state width="1878" height="213" key="GridCell.Tab.0.right/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706532542" />
+    <state width="1878" height="292" key="GridCell.Tab.0.right/0.23.1920.1057/1920.-171.1920.989@1920.-171.1920.989" timestamp="1596621754152" />
     <state width="1878" height="305" key="GridCell.Tab.0.right/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595837002504" />
     <state width="1878" height="192" key="GridCell.Tab.0.right/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594709692421" />
+    <state width="1878" height="292" key="GridCell.Tab.0.right/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596623288364" />
     <state width="1878" height="288" key="GridCell.Tab.0.right/0.23.1920.993/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1595989234184" />
-    <state width="1878" height="332" key="GridCell.Tab.1.bottom" timestamp="1595816180409">
-      <screen x="1920" y="-171" width="1920" height="993" />
+    <state width="1878" height="197" key="GridCell.Tab.1.bottom" timestamp="1596706530580">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
+    <state width="1878" height="375" key="GridCell.Tab.1.bottom/0.0.1920.1012/1920.-171.1920.1057@0.0.1920.1012" timestamp="1596592543727" />
+    <state width="1878" height="274" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.-171.1920.989@0.0.1920.1080" timestamp="1596612485341" />
+    <state width="1878" height="391" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618317667" />
+    <state width="1878" height="197" key="GridCell.Tab.1.bottom/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706530580" />
+    <state width="1878" height="347" key="GridCell.Tab.1.bottom/0.23.1920.1057/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1596676394920" />
+    <state width="1878" height="289" key="GridCell.Tab.1.bottom/0.23.1920.1057/1920.-171.1920.991@1920.-171.1920.991" timestamp="1596683365257" />
     <state width="1878" height="332" key="GridCell.Tab.1.bottom/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
-    <state width="1878" height="332" key="GridCell.Tab.1.center" timestamp="1595816180409">
-      <screen x="1920" y="-171" width="1920" height="993" />
+    <state width="1878" height="347" key="GridCell.Tab.1.bottom/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596622992117" />
+    <state width="1878" height="197" key="GridCell.Tab.1.center" timestamp="1596706530578">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
+    <state width="1878" height="375" key="GridCell.Tab.1.center/0.0.1920.1012/1920.-171.1920.1057@0.0.1920.1012" timestamp="1596592543724" />
+    <state width="1878" height="274" key="GridCell.Tab.1.center/0.0.1920.1080/1920.-171.1920.989@0.0.1920.1080" timestamp="1596612485339" />
+    <state width="1878" height="391" key="GridCell.Tab.1.center/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618317666" />
+    <state width="1878" height="197" key="GridCell.Tab.1.center/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706530578" />
+    <state width="1878" height="347" key="GridCell.Tab.1.center/0.23.1920.1057/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1596676394918" />
+    <state width="1878" height="289" key="GridCell.Tab.1.center/0.23.1920.1057/1920.-171.1920.991@1920.-171.1920.991" timestamp="1596683365255" />
     <state width="1878" height="332" key="GridCell.Tab.1.center/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
-    <state width="1878" height="332" key="GridCell.Tab.1.left" timestamp="1595816180409">
-      <screen x="1920" y="-171" width="1920" height="993" />
+    <state width="1878" height="347" key="GridCell.Tab.1.center/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596622992116" />
+    <state width="1878" height="197" key="GridCell.Tab.1.left" timestamp="1596706530578">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
+    <state width="1878" height="375" key="GridCell.Tab.1.left/0.0.1920.1012/1920.-171.1920.1057@0.0.1920.1012" timestamp="1596592543723" />
+    <state width="1878" height="274" key="GridCell.Tab.1.left/0.0.1920.1080/1920.-171.1920.989@0.0.1920.1080" timestamp="1596612485337" />
+    <state width="1878" height="391" key="GridCell.Tab.1.left/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618317665" />
+    <state width="1878" height="197" key="GridCell.Tab.1.left/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706530578" />
+    <state width="1878" height="347" key="GridCell.Tab.1.left/0.23.1920.1057/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1596676394916" />
+    <state width="1878" height="289" key="GridCell.Tab.1.left/0.23.1920.1057/1920.-171.1920.991@1920.-171.1920.991" timestamp="1596683365254" />
     <state width="1878" height="332" key="GridCell.Tab.1.left/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
-    <state width="1878" height="332" key="GridCell.Tab.1.right" timestamp="1595816180409">
-      <screen x="1920" y="-171" width="1920" height="993" />
+    <state width="1878" height="347" key="GridCell.Tab.1.left/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596622992116" />
+    <state width="1878" height="197" key="GridCell.Tab.1.right" timestamp="1596706530579">
+      <screen x="1920" y="-194" width="1920" height="1080" />
     </state>
+    <state width="1878" height="375" key="GridCell.Tab.1.right/0.0.1920.1012/1920.-171.1920.1057@0.0.1920.1012" timestamp="1596592543726" />
+    <state width="1878" height="274" key="GridCell.Tab.1.right/0.0.1920.1080/1920.-171.1920.989@0.0.1920.1080" timestamp="1596612485340" />
+    <state width="1878" height="391" key="GridCell.Tab.1.right/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618317666" />
+    <state width="1878" height="197" key="GridCell.Tab.1.right/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596706530579" />
+    <state width="1878" height="347" key="GridCell.Tab.1.right/0.23.1920.1057/1920.-171.1920.1057@1920.-171.1920.1057" timestamp="1596676394919" />
+    <state width="1878" height="289" key="GridCell.Tab.1.right/0.23.1920.1057/1920.-171.1920.991@1920.-171.1920.991" timestamp="1596683365256" />
     <state width="1878" height="332" key="GridCell.Tab.1.right/0.23.1920.1057/1920.-171.1920.993@1920.-171.1920.993" timestamp="1595816180409" />
+    <state width="1878" height="347" key="GridCell.Tab.1.right/0.23.1920.1057/1920.-194.1920.1012@1920.-194.1920.1012" timestamp="1596622992117" />
     <state x="2389" y="-33" key="SettingsEditor" timestamp="1594611851622">
       <screen x="1920" y="-171" width="1920" height="999" />
     </state>
     <state x="2389" y="-33" key="SettingsEditor/0.23.1920.1057/1920.-171.1920.999@1920.-171.1920.999" timestamp="1594611851622" />
-    <state x="666" y="297" width="588" height="486" key="find.popup" timestamp="1596446226025">
+    <state width="960" height="540" key="XDebugger.FullValuePopup" timestamp="1596681501651">
+      <screen x="1920" y="-194" width="1920" height="1080" />
+    </state>
+    <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596618538759" />
+    <state width="960" height="540" key="XDebugger.FullValuePopup/0.0.1920.1080/1920.-194.1920.1080@1920.-194.1920.1080" timestamp="1596681501651" />
+    <state x="666" y="297" width="588" height="486" key="find.popup" timestamp="1596537628825">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="666" y="297" width="588" height="486" key="find.popup/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596446226025" />
+    <state x="666" y="297" width="588" height="486" key="find.popup/0.0.1920.1080/1920.-194.1920.1080@0.0.1920.1080" timestamp="1596537628825" />
     <state x="625" y="238" width="670" height="736" key="search.everywhere.popup" timestamp="1596419578532">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
@@ -405,22 +496,38 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/../venv/Scam/lib/python3.8/site-packages/ansible/executor/task_result.py</url>
-          <line>153</line>
-          <option name="timeStamp" value="5" />
+          <url>file://$PROJECT_DIR$/../cmdb/controller/factory.py</url>
+          <line>104</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../cmdb/controller/factory.py</url>
+          <line>113</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../cmdb/controller/sdk.py</url>
+          <line>30</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/../cmdb/asset/urls.py</url>
+          <line>16</line>
+          <option name="timeStamp" value="47" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
-        <watch expression="self._host" language="Python" />
-        <watch expression="self._task" language="Python" />
-        <watch expression="type(self._host)" language="Python" />
-        <watch expression="result.task_name" />
+        <watch expression="disk_info[k]['links']['uuids']" language="Python" />
+        <watch expression="type(size)" language="Python" />
+        <watch expression="type(disk_info[k]['size'].split()[0])" language="Python" />
+        <watch expression="router.urls" language="Python" />
       </configuration>
     </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Scam$collect.coverage" NAME="collect Coverage Results" MODIFIED="1596003960740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/controller" />
+    <SUITE FILE_PATH="coverage/Scam$test.coverage" NAME="test Coverage Results" MODIFIED="1596682918273" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../cmdb" />
+    <SUITE FILE_PATH="coverage/Scam$collect.coverage" NAME="manage Coverage Results" MODIFIED="1596706045953" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../cmdb/" />
   </component>
 </project>

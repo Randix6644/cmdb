@@ -17,8 +17,11 @@ class DiskSerializer(BulkSerializerMixin, ManageSerializer):
         fields = '__all__'
         model = Disk
 
-    type = TypeIntegerField(mapping=disk_type, allow_null=False)
-    status = TypeIntegerField(mapping=disk_type, allow_null=False)
+    # type = TypeIntegerField(mapping=disk_type, allow_null=False)
+    status = TypeIntegerField(mapping=disk_status, allow_null=False)
     idc = LogicalForeignField(model=IDC, allow_null=False, allow_blank=False)
-    host = LogicalForeignField(model=Host, allow_null=True, allow_blank=True)
-
+    host = LogicalForeignField(
+        model=Host,
+        exclude_fields=['password'],
+        allow_null=True,
+        allow_blank=True)
