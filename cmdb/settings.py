@@ -11,9 +11,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 from corsheaders.defaults import default_headers
-from .configs import cfg
+from .configs import CFG
 
 import os
+from sys import platform
+
+# python3.8 在Macos 上默认使用spawn，uwsgi 会报错
+if platform == 'darwin':
+    import multiprocessing
+    multiprocessing.set_start_method('fork')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,12 +35,12 @@ if not os.path.exists(LOG_DIR):
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = cfg.get('secret', 'secret_key')
+SECRET_KEY = CFG.get('secret', 'secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,9 +48,10 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.staticfiles',
-    'controller',
+    'monitor',
     'rest_framework',
-    'asset'
+    'asset',
+    'django_apscheduler'
 ]
 
 MIDDLEWARE = [
@@ -81,11 +88,11 @@ TEMPLATES = [
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': cfg.get('mysql', 'db'),
-        'HOST': cfg.get('mysql', 'host'),
-        'PORT': cfg.get('mysql', 'port'),
-        'USER': cfg.get('mysql', 'user'),
-        'PASSWORD': cfg.get('mysql', 'password'),
+        'NAME': CFG.get('mysql', 'db'),
+        'HOST': CFG.get('mysql', 'host'),
+        'PORT': CFG.get('mysql', 'port'),
+        'USER': CFG.get('mysql', 'user'),
+        'PASSWORD': CFG.get('mysql', 'password'),
         'ATOMIC_REQUESTS': True
     }
 }
@@ -217,3 +224,16 @@ LOGGING = {
 }
 
 LOGGER = 'django'
+
+REDIS_HOST = CFG.get('redis', 'REDIS_HOST')
+REDIS_PORT = CFG.get('redis', 'REDIS_PORT')
+
+# Channel 配置
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            'hosts': [(REDIS_HOST, REDIS_PORT)],
+        }
+    },
+}

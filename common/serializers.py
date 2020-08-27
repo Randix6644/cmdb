@@ -19,6 +19,19 @@ class BaseSerializer(ModelSerializer):
     """
     基础序列化器
     """
+    def __init__(self, *args, standalone=False, exclude_fields=(), **kwargs):
+        self._standalone = standalone
+        self._exclude_fields = exclude_fields
+        super().__init__(*args, **kwargs)
+
+    @property
+    def _readable_fields(self):
+        for key, field in self.fields.items():
+            if not field.write_only:
+                if not getattr(field, 'is_attached', False) or not self._standalone:
+                    if key not in self._exclude_fields:
+                        yield field
+
     def save(self, **kwargs):
         """
         重写保存逻辑，加入基础模型中的预处理和后处理

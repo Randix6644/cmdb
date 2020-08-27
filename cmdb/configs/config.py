@@ -1,10 +1,10 @@
 from configparser import ConfigParser
 
 
-__all__ = ['cfg']
+__all__ = ['CFG']
 
 
-cfg = ConfigParser()
-cfg.read('cmdb/configs/config.ini')
+CFG = ConfigParser()
+CFG.read('cmdb/configs/config.ini')
 
 

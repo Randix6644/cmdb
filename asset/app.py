@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class BillConfig(AppConfig):
+class AssetConfig(AppConfig):
     name = 'asset'

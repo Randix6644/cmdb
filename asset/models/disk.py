@@ -12,7 +12,7 @@ class Disk(DisplayModel):
         blank=True,
         max_length=255,
         verbose_name='盘标识')
-    # type = models.SmallIntegerField(null=False, blank=False, verbose_name='类型')
+    # type = modelsbak.SmallIntegerField(null=False, blank=False, verbose_name='类型')
     size = models.IntegerField(null=False, blank=False, verbose_name='硬盘大小')
     status = models.SmallIntegerField(
         null=False,

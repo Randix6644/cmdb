@@ -88,9 +88,9 @@ class LogicalForeignField(CharField):
 
     def __init__(self, model, display_fields=None, exclude_fields=None, **kwargs):
         self.model = model
+        self.is_attached = True
         self.display_fields = display_fields
         self.exclude_fields = exclude_fields
-        kwargs['allow_blank'] = False
         kwargs['trim_whitespace'] = True
         kwargs['max_length'] = 32
         kwargs['min_length'] = 32
@@ -110,6 +110,8 @@ class LogicalForeignField(CharField):
         return super().to_internal_value(data)
 
     def to_representation(self, value):
+        if self.allow_blank and not value:
+            return {}
         value = super().to_representation(value)
         obj = self.model.dao.get_obj(uuid=value)
         if self.display_fields is None:

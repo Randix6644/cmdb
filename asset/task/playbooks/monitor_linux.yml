@@ -1,0 +1,40 @@
+---
+ - hosts: "{{ once }}"
+   tasks:
+   - name: memory_usage_get
+     shell: |
+        free -m | awk 'NR==2{printf "%.2f", $3/$2}'
+     register: mem_usage_var
+
+   - name: memory_usage
+     set_fact:
+       memory_usage: "{{ mem_usage_var.stdout }}"
+
+   - name: cpu_usage_get
+     shell: |
+       grep 'cpu ' /proc/stat | awk '{usage=($2+$4)/($2+$4+$5)} END {print usage}'
+     register: cpu_usage_var
+
+   - name: cpu_usage
+     set_fact:
+       cpu_usage: "{{ cpu_usage_var.stdout }}"
+
+   - name: cpu_load_get
+     shell: |
+       top -bn1 | grep load | awk '{printf "%.2f\n", $(NF-2)}'
+     register: cpu_load_var
+
+   - name: cpu_load
+     set_fact:
+       cpu_load: "{{ cpu_load_var.stdout }}"
+
+   - name: disk_usage_info
+     shell: |
+        df -t ext2 -t ext4 | grep -vE '^Filesystem|tmpfs|cdrom' |  awk '{ print  ""$3/1000/1000","$4/1000/1000","$5""}'
+     register: disk_info_arr
+
+   - name: disk_usage
+     set_fact:
+       disk_usage: "{{ disk_info_arr.stdout.split(',')[0] }}"
+       disk_avail: "{{ disk_info_arr.stdout.split(',')[1] }}"
+       disk_used_percent: "{{ disk_info_arr.stdout.split(',')[2] }}"

@@ -1,7 +1,9 @@
-from rest_framework.serializers import CharField, IntegerField, IPAddressField
+from rest_framework.serializers import IntegerField, IPAddressField, BooleanField
 from common.serializers import *
 from common.fields import TypeIntegerField, LogicalForeignField
 from ..models import *
+
+__all__ = ['IPSerializer']
 
 
 class IPSerializer(BulkSerializerMixin, ManageSerializer):

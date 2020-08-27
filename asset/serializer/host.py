@@ -1,10 +1,13 @@
-from rest_framework.serializers import IntegerField, IPAddressField, CharField
+from rest_framework.serializers import *
 from utils import generate_unique_uuid, hash_string
 from typing import List
 from common.serializers import *
-from common.fields import TypeIntegerField, LogicalForeignField
-from controller import *
-from ..models import IP, host_type, IDC, Disk, Host, Project, IP_status
+from common.fields import *
+# from .network import *
+from monitor import *
+from . import *
+# from ..models import IP, host_type, IDC, Disk, Host, Project, IP_status
+from ..models import *
 from cmdb.configs import *
 
 
@@ -33,6 +36,10 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
     cpu = IntegerField(read_only=True)
     memory = IntegerField(read_only=True)
 
+    # read_only and foreign models
+    ips = SerializerMethodField()
+    disks = SerializerMethodField()
+
     # write only and pop
     ip = IPAddressField(write_only=True)
     parent_ip = IPAddressField(write_only=True, required=False)
@@ -41,6 +48,36 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
     # 逻辑外键
     idc = LogicalForeignField(model=IDC)
     project = LogicalForeignField(model=Project)
+
+    @staticmethod
+    def get_ips(obj):
+        host_uuid = obj.uuid
+        ins = IP.dao.get_queryset(host=host_uuid)
+        serializer = IPSerializer(
+            ins,
+            standalone=True,
+            exclude_fields=(
+                'created_at',
+                'id',
+                'created_by',
+                'updated_by'),
+            many=True)
+        return serializer.data
+
+    @staticmethod
+    def get_disks(obj):
+        host_uuid = obj.uuid
+        ins = Disk.dao.get_queryset(host=host_uuid)
+        serializer = DiskSerializer(
+            ins,
+            standalone=True,
+            exclude_fields=(
+                'created_at',
+                'id',
+                'created_by',
+                'updated_by'),
+            many=True)
+        return serializer.data
 
     def create_relative_models(self, **kwargs):
         creation_kwargs = self.get_creation_kwargs()
@@ -64,12 +101,13 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             # 改密码重新跑一次ssh-copy-id 以防用户第一次密码输错导致后面无法远端执行。
             self._gather_host_info()
         elif any([ip, parent_ip, bandwidth]):
-            raise Exception('invalid param, ip, parent_ip, and bandwidth are not allowed to be modified by this api.')
+            raise Exception(
+                'invalid param, ip, parent_ip, and bandwidth are not allowed to be modified by this api.')
         super().save(**kwargs)
 
     def _gather_host_info(self):
-        init = cfg.get('ansible', 'init_pb')
-        facts = cfg.get('ansible', 'fact_pb')
+        init = CFG.get('ansible', 'init_pb')
+        facts = CFG.get('ansible', 'fact_pb')
         user = self.validated_data.get('username')
         password = self.validated_data.get('password')
         ip = self.validated_data.get('ip')
@@ -89,7 +127,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             host_info = LinuxCollectorFactory().exec(
                 [addr], [facts], extra_vars, user=user)
         except Exception as e:
-            raise Exception(f"unable to collect host data, err{e}")
+            raise Exception(f"unable to collect host data, err: {e}")
         return host_info
 
     def get_creation_kwargs(self):
@@ -137,7 +175,10 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
                 'status': IP_status.index('已绑定'),
                 'parent': parent,
                 'host': host,
+                # 'used_to_sync': True
             })
+        # 用户输入的ip 最后append进来的， 用来作同步用
+        ip_kwargs[-1]['used_to_sync'] = True
         return ip_kwargs
 
     @staticmethod
