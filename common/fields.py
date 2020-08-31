@@ -70,7 +70,8 @@ class TypeIntegerField(IntegerField):
         """
         外部数据是字符串，转为数字后再继续
         """
-        data = self.mapping.index(data)
+        if not isinstance(data, int):
+            data = self.mapping.index(data)
         return super().to_internal_value(data)
 
     def to_representation(self, value):

@@ -2,7 +2,7 @@ from django.db import models
 import ipaddress
 from common.models import ManageModel
 from utils.dao import CreateObjectError
-from .mapping import IP_type
+from .mapping import IPTypeMapping
 
 __all__ = ['IP']
 
@@ -42,9 +42,9 @@ class IP(ManageModel):
     def pre_create(cls, data: dict):
         addr = data.get('address')
         if ipaddress.ip_address(addr).is_private:
-            data['type'] = IP_type.index('内网')
+            data['type'] = IPTypeMapping.index('内网')
         else:
-            data['type'] = IP_type.index('外网')
+            data['type'] = IPTypeMapping.index('外网')
             if IP.dao.get_queryset(address=addr, empty=True):
                 raise Exception(f'ip already exist{addr}')
         used_to_sync = data.get('used_to_sync')

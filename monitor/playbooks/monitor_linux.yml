@@ -30,11 +30,9 @@
 
    - name: disk_usage_info
      shell: |
-        df -t ext2 -t ext4 -t xfs | grep -vE '^Filesystem|tmpfs|cdrom' |  awk '{ print  ""$3/1000/1000","$4/1000/1000","$5""}'
+        df -t ext2 -t ext4 -t xfs | grep -vE '^Filesystem|tmpfs|cdrom' |  awk '{ print  ""$1","$3/1000/1000","$4/1000/1000","$5","}'
      register: disk_info_arr
 
    - name: disk_usage
      set_fact:
-       disk_usage: "{{ disk_info_arr.stdout.split(',')[0] }}"
-       disk_avail: "{{ disk_info_arr.stdout.split(',')[1] }}"
-       disk_used_percent: "{{ disk_info_arr.stdout.split(',')[2] | replace('%', '') | float / 100}}"
+       disk_info: "{{ disk_info_arr.stdout }}"

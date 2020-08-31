@@ -1,4 +1,5 @@
 from rest_framework.serializers import *
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 from utils import generate_unique_uuid, hash_string
 from typing import List
 from common.serializers import *
@@ -26,7 +27,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
         model = Host
 
     ssh_port = IntegerField(max_value=65536, min_value=22)
-    type = TypeIntegerField(mapping=host_type, min_value=0)
+    type = TypeIntegerField(mapping=HostTypeMapping, min_value=0)
     username = CharField(max_length=64)
     password = CharField(max_length=63, write_only=True)
 
@@ -119,13 +120,19 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             "server": ip,
             "sshport": ssh_port}
         try:
-            _ = LinuxCollectorFactory().exec(
-                [addr], [init], extra_vars, user=user)
+            lx_factory = LinuxCollectorFactory()
+            # 修改过ansible 源码， 加入超时控制，信号量只能在main thread上收发， 所以创建一个进程。
+            with ProcessPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(lx_factory.exec, [addr], [init], extra_vars, user=user)
+                future.result()
         except Exception as e:
-            raise Exception(f"unable to initialize host, err{e}")
+            raise Exception(f"unable to initialize host, err: {e}")
         try:
-            host_info = LinuxCollectorFactory().exec(
-                [addr], [facts], extra_vars, user=user)
+            with ProcessPoolExecutor(max_workers=1) as executor:
+                future = executor.submit(LinuxCollectorFactory().exec, [addr], [facts], extra_vars, user=user)
+                host_info = future.result()
+            # host_info = LinuxCollectorFactory().exec(
+            #     [addr], [facts], extra_vars, user=user)
         except Exception as e:
             raise Exception(f"unable to collect host data, err: {e}")
         return host_info
@@ -172,7 +179,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             ip_kwargs.append({
                 'address': ip,
                 'bandwidth': bandwidth,
-                'status': IP_status.index('已绑定'),
+                'status': IPStatusMapping.index('已绑定'),
                 'parent': parent,
                 'host': host,
                 # 'used_to_sync': True
@@ -196,6 +203,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             size = int(float(disk_info[k]['size'].split()[0]))
             create_kwargs = {
                 'uuid': uuid,
+                'partition': k,
                 'size': size,
                 'idc': idc,
                 'host': host}

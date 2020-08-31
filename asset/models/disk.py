@@ -1,23 +1,23 @@
 from django.db import models
-from .mapping import disk_status
+from .mapping import DiskStatusMapping
 from common.models import DisplayModel
 
 
 class Disk(DisplayModel):
     class Meta:
         db_table = 'disk'
+        ordering = ('-created_at',)
 
     partition = models.CharField(
         null=True,
         blank=True,
         max_length=255,
         verbose_name='盘标识')
-    # type = modelsbak.SmallIntegerField(null=False, blank=False, verbose_name='类型')
     size = models.IntegerField(null=False, blank=False, verbose_name='硬盘大小')
     status = models.SmallIntegerField(
         null=False,
         blank=False,
-        default=disk_status.index('挂载'),
+        default=DiskStatusMapping.index('挂载'),
         verbose_name='状态')
 
     # 逻辑外键

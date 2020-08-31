@@ -2,11 +2,13 @@ from ansible import context
 from ansible.cli import CLI
 from ansible.plugins.callback import CallbackBase
 from ansible.module_utils.common.collections import ImmutableDict
-from ansible.executor.playbook_executor import PlaybookExecutor
+# from ansible.executor.playbook_executor import PlaybookExecutor
 from ansible.parsing.dataloader import DataLoader
 from ansible.inventory.manager import InventoryManager
 from ansible.vars.manager import VariableManager
 from typing import List, Type
+from monitor.modified_ansible.custom_pb_executor import PlaybookExecutor
+from ansible.executor.task_result import TaskResult
 
 __all__ = ['ModelResultsCollector', 'PBExecutor']
 
@@ -63,7 +65,7 @@ class PBExecutor:
             listtasks=False,
             listhosts=False,
             syntax=False,
-            connection='ssh',
+            connection='smart',
             module_path=None,
             forks=100,
             remote_user=user,
@@ -84,7 +86,10 @@ class PBExecutor:
                 self.inventory,))
         inventory.add_group('once')
         for host in self.hosts:
-            inventory.add_host(host=host.split(':')[0], port=host.split(':')[1], group='once')
+            inventory.add_host(
+                host=host.split(':')[0],
+                port=host.split(':')[1],
+                group='once')
         variable_manager = VariableManager(
             loader=loader,
             inventory=inventory,
@@ -101,4 +106,3 @@ class PBExecutor:
         pb_ex._tqm._stdout_callback = self.cb
         pb_ex.run()
         return self.cb
-

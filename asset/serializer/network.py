@@ -13,9 +13,9 @@ class IPSerializer(BulkSerializerMixin, ManageSerializer):
         exclude = ('idc',)
         model = IP
     address = IPAddressField(allow_null=False)
-    type = TypeIntegerField(mapping=IP_type)
+    type = TypeIntegerField(mapping=IPTypeMapping)
     bandwidth = IntegerField(allow_null=True)
-    status = TypeIntegerField(mapping=IP_status, allow_null=True)
+    status = TypeIntegerField(mapping=IPStatusMapping, allow_null=True)
 
     # 逻辑外键
     parent = LogicalForeignField(model=IP, allow_null=True, allow_blank=True)

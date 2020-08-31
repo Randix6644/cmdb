@@ -1,4 +1,5 @@
 from django.db import models
+from .mapping import DiskStatusMapping, IPStatusMapping
 from common.models import ManageModel
 from .network import IP
 from .disk import Disk
@@ -16,7 +17,7 @@ class Host(ManageModel):
         db_table = 'host'
         verbose_name = '主机身份信息'
         unique_together = ('name', 'project')
-        # ordering = ('-created_at', 'csp', 'project')
+        ordering = ('-created_at', 'idc', 'project')
 
     name = models.CharField(unique=True, max_length=64, verbose_name='主机名称')
     username = models.CharField(max_length=32, verbose_name='系统用户名称')
@@ -39,6 +40,6 @@ class Host(ManageModel):
 
     def post_delete(self):
         dq = Disk.dao.get_queryset(host=self.uuid)
-        Disk.dao.bulk_update_obj(dq, host=None)
+        Disk.dao.bulk_update_obj(dq, host=None, status=DiskStatusMapping.index('空闲'))
         iq = IP.dao.get_queryset(host=self.uuid)
-        IP.dao.bulk_update_obj(iq, host=None)
+        IP.dao.bulk_update_obj(iq, host=None, status=IPStatusMapping.index('空闲'))

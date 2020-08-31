@@ -1,10 +1,24 @@
 from __future__ import annotations
+from typing import List
+from concurrent.futures import ProcessPoolExecutor
 from abc import ABC, abstractmethod
 from cmdb.settings import BASE_DIR
+from utils import logger
 import os
 from .sdk import PBExecutor, ModelResultsCollector, CallbackBase
 
 __all__ = ['CollectorFactory', 'LinuxCollectorFactory']
+
+
+def linux_collector_factory_run_with_process(addr: List, pb: List, log_flag, **kwargs):
+    try:
+        with ProcessPoolExecutor(max_workers=1) as executor:
+            future = executor.submit(LinuxCollectorFactory().exec, addr, pb, **kwargs)
+            host_info = future.result()
+            return host_info
+    except Exception as e:
+        logger.error(f"unable to collect {log_flag} data, err{e}")
+        raise Exception(f"unable to collect {log_flag} data, err{e}")
 
 
 class CollectorFactory:
@@ -106,8 +120,6 @@ class LinuxCollector(Collector):
             for task_name, fact in result.items():
                 if fact._result.get('stderr'):
                     raise Exception(f'failed to execute task{task_name} on {host}, err:{fact._result.get("stderr")}')
-                    # self._result_raw['failed'][host][task_name] = fact._result.get(
-                    #     'stderr')
 
     def set_unreachable(self):
         for host, result in self._res.host_unreachable.items():

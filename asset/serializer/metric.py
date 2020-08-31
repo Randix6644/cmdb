@@ -1,4 +1,5 @@
 from common.serializers import *
+from common.fields import TypeIntegerField
 from ..models import *
 
 __all__ = [
@@ -15,4 +16,6 @@ class MetricSerializer(BulkSerializerMixin, ManageSerializer):
         list_serializer_class = BulkListSerializer
         fields = '__all__'
         model = Metric
+
+    type = TypeIntegerField(mapping=MetricTypeMapping)
 
