@@ -7,7 +7,7 @@ from utils import logger
 import os
 from .sdk import PBExecutor, ModelResultsCollector, CallbackBase
 
-__all__ = ['CollectorFactory', 'LinuxCollectorFactory']
+__all__ = ['CollectorFactory', 'LinuxCollectorFactory', 'linux_collector_factory_run_with_process']
 
 
 def linux_collector_factory_run_with_process(addr: List, pb: List, log_flag, **kwargs):

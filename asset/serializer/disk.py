@@ -1,3 +1,4 @@
+from rest_framework.serializers import CharField
 from common.serializers import *
 from common.fields import TypeIntegerField, LogicalForeignField
 from ..models import *
@@ -5,6 +6,11 @@ from ..models import *
 __all__ = [
     'DiskSerializer'
 ]
+
+
+class DisKSizeField(CharField):
+    def to_representation(self, value):
+        return f'{value} G'
 
 
 class DiskSerializer(BulkSerializerMixin, ManageSerializer):
@@ -17,7 +23,6 @@ class DiskSerializer(BulkSerializerMixin, ManageSerializer):
         fields = '__all__'
         model = Disk
 
-    # type = TypeIntegerField(mapping=disk_type, allow_null=False)
     status = TypeIntegerField(mapping=DiskStatusMapping, allow_null=False)
     idc = LogicalForeignField(model=IDC, allow_null=False, allow_blank=False)
     host = LogicalForeignField(
@@ -25,3 +30,6 @@ class DiskSerializer(BulkSerializerMixin, ManageSerializer):
         exclude_fields=['password'],
         allow_null=True,
         allow_blank=True)
+
+    size = DisKSizeField()
+

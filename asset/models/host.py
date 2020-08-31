@@ -27,7 +27,7 @@ class Host(ManageModel):
     cpu = models.SmallIntegerField(
         verbose_name='cpu核数', null=False, blank=False)
     model = models.CharField(max_length=64, verbose_name='型号')
-    memory = models.SmallIntegerField(
+    memory = models.IntegerField(
         verbose_name='内存', null=False, blank=False)
     os = models.CharField(max_length=24, verbose_name='系统')
 
@@ -35,11 +35,8 @@ class Host(ManageModel):
     project = models.CharField(max_length=32, verbose_name='项目')
     idc = models.CharField(max_length=32, verbose_name='所在机房')
 
-    # def pre_create(self, data: dict):
-    #     pass
-
     def post_delete(self):
         dq = Disk.dao.get_queryset(host=self.uuid)
         Disk.dao.bulk_update_obj(dq, host=None, status=DiskStatusMapping.index('空闲'))
         iq = IP.dao.get_queryset(host=self.uuid)
-        IP.dao.bulk_update_obj(iq, host=None, status=IPStatusMapping.index('空闲'))
+        IP.dao.bulk_update_obj(iq, host=None, status=IPStatusMapping.index('空闲'), used_to_sync=False)

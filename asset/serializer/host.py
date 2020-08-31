@@ -1,13 +1,11 @@
 from rest_framework.serializers import *
-from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor
 from utils import generate_unique_uuid, hash_string
 from typing import List
 from common.serializers import *
 from common.fields import *
-# from .network import *
 from monitor import *
 from . import *
-# from ..models import IP, host_type, IDC, Disk, Host, Project, IP_status
 from ..models import *
 from cmdb.configs import *
 
@@ -15,6 +13,12 @@ from cmdb.configs import *
 __all__ = [
     'HostSerializer'
 ]
+
+
+class MemorySerializer(IntegerField):
+    def to_representation(self, value):
+        value = f'{round(super().to_representation(value)/1024, 2)} G'
+        return value
 
 
 class HostSerializer(BulkSerializerMixin, ManageSerializer):
@@ -35,7 +39,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
     os = CharField(read_only=True)
     model = CharField(read_only=True)
     cpu = IntegerField(read_only=True)
-    memory = IntegerField(read_only=True)
+    memory = MemorySerializer(read_only=True)
 
     # read_only and foreign models
     ips = SerializerMethodField()
@@ -131,8 +135,6 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             with ProcessPoolExecutor(max_workers=1) as executor:
                 future = executor.submit(LinuxCollectorFactory().exec, [addr], [facts], extra_vars, user=user)
                 host_info = future.result()
-            # host_info = LinuxCollectorFactory().exec(
-            #     [addr], [facts], extra_vars, user=user)
         except Exception as e:
             raise Exception(f"unable to collect host data, err: {e}")
         return host_info
@@ -150,6 +152,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
         ip_set.append(ip)
         model = str(host_info['success'][ip]['cpu'][2])
         mem = host_info['success'][ip]['ram']
+        print(mem)
         hard_disk_set = host_info['success'][ip]['disk']
         os = host_info['success'][ip]['release']
         self.fill_up_validated_data(host_uuid, cpu, mem, model, os)
@@ -216,4 +219,11 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
 
     @staticmethod
     def create_ips(ip_set: List[dict]):
+        # 拿最后一个元素出来， 即本次创建主机用来同步的ip
+        synced_ip_kwargs = ip_set[-1]
+        sync_ip = IP.dao.get_queryset(address=synced_ip_kwargs.get('address'), host=synced_ip_kwargs.get('host'), empty=True)
+        # 查看此ip 是否以前存在解绑过的， 修改状态和标识即可。
+        if sync_ip:
+            IP.dao.update_obj(sync_ip[0], used_to_sync=True, status=IPStatusMapping.index('已绑定'))
+            ip_set.pop()
         IP.dao.bulk_create_obj(ip_set)

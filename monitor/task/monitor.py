@@ -1,5 +1,5 @@
-from concurrent.futures import ProcessPoolExecutor
 from django.utils import timezone
+from asset.models.mapping import *
 from utils import CreateObjectError, logger
 from cmdb.configs import CFG
 from asset.models import *
@@ -34,7 +34,7 @@ class MonitorSync(BaseTask):
                         f'unable to create monitor_data with {host_info} due to err {e}')
                     continue
                 rst = parser(value)
-                if 'disk' in m.name:
+                if m.type == DiskTypeMapping.index('disk'):
                     kwargs = []
                     for k, v in rst.items():
                         value = v.get(m.name)
@@ -53,7 +53,7 @@ class MonitorSync(BaseTask):
 
     @staticmethod
     def get_metric_name(m):
-        if 'disk' in m.name:
+        if m.type == DiskTypeMapping.index('disk'):
             return 'disk_info'
         return m.name
 

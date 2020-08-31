@@ -6,24 +6,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="22d7a0fb-aa23-4a01-832a-3fa670a5568c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/monitor/modified_ansible/custom_pb_executor.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monitor/task/sync_hardware.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/models/disk.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/disk.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/models/health.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/health.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/asset/models/host.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/host.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/models/idc.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/idc.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/models/mapping.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/mapping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/models/metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/metric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/models/network.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/models/project.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/models/project.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/asset/serializer/disk.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/serializer/disk.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/asset/serializer/host.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/serializer/host.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/serializer/metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/serializer/metric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/asset/serializer/network.py" beforeDir="false" afterPath="$PROJECT_DIR$/asset/serializer/network.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common/fields.py" beforeDir="false" afterPath="$PROJECT_DIR$/common/fields.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmdb/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/cmdb/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/factory.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/factory.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/playbooks/monitor_linux.yml" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/playbooks/monitor_linux.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monitor/sdk.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/sdk.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monitor/task/monitor.py" beforeDir="false" afterPath="$PROJECT_DIR$/monitor/task/monitor.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -180,7 +169,7 @@
       <workItem from="1595557703861" duration="142698000" />
       <workItem from="1596794394096" duration="763000" />
       <workItem from="1597024766938" duration="1657000" />
-      <workItem from="1597281531423" duration="66579000" />
+      <workItem from="1597281531423" duration="70124000" />
     </task>
     <servers />
   </component>
