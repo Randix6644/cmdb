@@ -1,6 +1,5 @@
 from rest_framework.serializers import *
-from concurrent.futures import ProcessPoolExecutor
-from utils import generate_unique_uuid, hash_string
+from utils import generate_unique_uuid, hash_string, logger
 from typing import List
 from common.serializers import *
 from common.fields import *
@@ -123,20 +122,8 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             "password": password,
             "server": ip,
             "sshport": ssh_port}
-        try:
-            lx_factory = LinuxCollectorFactory()
-            # 修改过ansible 源码， 加入超时控制，信号量只能在main thread上收发， 所以创建一个进程。
-            with ProcessPoolExecutor(max_workers=1) as executor:
-                future = executor.submit(lx_factory.exec, [addr], [init], extra_vars, user=user)
-                future.result()
-        except Exception as e:
-            raise Exception(f"unable to initialize host, err: {e}")
-        try:
-            with ProcessPoolExecutor(max_workers=1) as executor:
-                future = executor.submit(LinuxCollectorFactory().exec, [addr], [facts], extra_vars, user=user)
-                host_info = future.result()
-        except Exception as e:
-            raise Exception(f"unable to collect host data, err: {e}")
+        linux_collector_factory_run_with_process([addr], [init], 'host initialization', extra_vars, user=user)
+        host_info = linux_collector_factory_run_with_process([addr], [facts], 'host data collection', extra_vars, user=user)
         return host_info
 
     def get_creation_kwargs(self):
@@ -150,9 +137,9 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
         cpu = host_info['success'][ip]['cores']
         ip_set = host_info['success'][ip]['ip']
         ip_set.append(ip)
+        ip_set = list(set(ip_set))
         model = str(host_info['success'][ip]['cpu'][2])
         mem = host_info['success'][ip]['ram']
-        print(mem)
         hard_disk_set = host_info['success'][ip]['disk']
         os = host_info['success'][ip]['release']
         self.fill_up_validated_data(host_uuid, cpu, mem, model, os)
@@ -194,11 +181,17 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
     @staticmethod
     def parse_disk_info(idc: str, host: str, disk_info: dict) -> List[dict]:
         disks = []
+        logger.debug(f"Parsing disk info, disk_info:{disk_info}")
+        print(f"Parsing disk info, disk_info:{disk_info}")
         disk_keys = [k for k in disk_info if k.startswith(
             "vd") or k.startswith('sd')]
         for k in disk_keys:
-            # uuid = disk_info[k]['links']['uuids'][0].replace('-', '')
-            ids = ''.join(disk_info[k]['links']['ids'])
+            ids = ''.join(disk_info.get(k)['links']['ids'])
+            ids = str(ids)
+            p = disk_info[k].get('partitions')
+            for part, v in p.items():
+                uid = str(v.get('uuid'))
+                ids = uid + ids
             uuid = hash_string(ids)
             if not uuid:
                 continue

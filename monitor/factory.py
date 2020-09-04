@@ -10,15 +10,15 @@ from .sdk import PBExecutor, ModelResultsCollector, CallbackBase
 __all__ = ['CollectorFactory', 'LinuxCollectorFactory', 'linux_collector_factory_run_with_process']
 
 
-def linux_collector_factory_run_with_process(addr: List, pb: List, log_flag, **kwargs):
+def linux_collector_factory_run_with_process(addr: List, pb: List, log_str, extra_args=None, **kwargs):
     try:
         with ProcessPoolExecutor(max_workers=1) as executor:
-            future = executor.submit(LinuxCollectorFactory().exec, addr, pb, **kwargs)
-            host_info = future.result()
-            return host_info
+            future = executor.submit(LinuxCollectorFactory().exec, addr, pb, extra_args, **kwargs)
+            rst = future.result()
+            return rst
     except Exception as e:
-        logger.error(f"unable to collect {log_flag} data, err{e}")
-        raise Exception(f"unable to collect {log_flag} data, err{e}")
+        logger.error(f"unable to execute {log_str}, err{e}")
+        raise Exception(f"unable to execute {log_str}, err{e}")
 
 
 class CollectorFactory:

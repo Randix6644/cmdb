@@ -2,13 +2,11 @@ from ansible import context
 from ansible.cli import CLI
 from ansible.plugins.callback import CallbackBase
 from ansible.module_utils.common.collections import ImmutableDict
-# from ansible.executor.playbook_executor import PlaybookExecutor
 from ansible.parsing.dataloader import DataLoader
 from ansible.inventory.manager import InventoryManager
 from ansible.vars.manager import VariableManager
 from typing import List, Type
 from monitor.modified_ansible.custom_pb_executor import PlaybookExecutor
-from ansible.executor.task_result import TaskResult
 
 __all__ = ['ModelResultsCollector', 'PBExecutor']
 

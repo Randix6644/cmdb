@@ -34,7 +34,7 @@ class MonitorSync(BaseTask):
                         f'unable to create monitor_data with {host_info} due to err {e}')
                     continue
                 rst = parser(value)
-                if m.type == DiskTypeMapping.index('disk'):
+                if m.type == MetricTypeMapping.index('disk'):
                     kwargs = []
                     for k, v in rst.items():
                         value = v.get(m.name)
@@ -53,7 +53,7 @@ class MonitorSync(BaseTask):
 
     @staticmethod
     def get_metric_name(m):
-        if m.type == DiskTypeMapping.index('disk'):
+        if m.type == MetricTypeMapping.index('disk'):
             return 'disk_info'
         return m.name
 
@@ -68,21 +68,36 @@ class MonitorSync(BaseTask):
         }
         return kwargs
 
+    # @staticmethod
+    # def disk_monitor_data_parser(s):
+    #     data_list = s.split(',')
+    #     data_list = data_list[:-1]
+    #     print(f'fucking data_lst {data_list}')
+    #     length = len(data_list)
+    #     d = {}
+    #     for i in range(0, length):
+    #         if i % 4 == 0:
+    #             if '\n' in data_list[i]:
+    #                 data_list[i] = data_list[i].replace('\n', '')
+    #             d[data_list[i]] = {}
+    #             d[data_list[i]]['disk_usage'] = data_list[i + 1]
+    #             d[data_list[i]]['disk_avail'] = data_list[i + 2]
+    #             d[data_list[i]]['disk_used_percent'] = float(data_list[i + 3].replace('%', '')) / 100
+    #     return d
+
     @staticmethod
     def disk_monitor_data_parser(s):
-        data_list = s.split(',')
-        data_list = data_list[:-1]
-        print(f'fucking data_lst {data_list}')
+        s = s.replace('\n', ' ')
+        data_list = s.split(' ')
+        data_list = [i for i in data_list if i and i != ',']
         length = len(data_list)
         d = {}
         for i in range(0, length):
-            if i % 4 == 0:
-                if '\n' in data_list[i]:
-                    data_list[i] = data_list[i].replace('\n', '')
+            if i % 6 == 0:
                 d[data_list[i]] = {}
-                d[data_list[i]]['disk_usage'] = data_list[i + 1]
-                d[data_list[i]]['disk_avail'] = data_list[i + 2]
-                d[data_list[i]]['disk_used_percent'] = float(data_list[i + 3].replace('%', '')) / 100
+                d[data_list[i]]['disk_usage'] = int(data_list[i + 2])/1024/1024
+                d[data_list[i]]['disk_avail'] = int(data_list[i + 3])/1024/1024
+                d[data_list[i]]['disk_used_percent'] = float(data_list[i + 4].replace('%', '')) / 100
         return d
 
     @staticmethod
