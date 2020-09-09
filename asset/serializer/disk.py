@@ -25,11 +25,11 @@ class DiskSerializer(BulkSerializerMixin, ManageSerializer):
 
     status = TypeIntegerField(mapping=DiskStatusMapping, allow_null=False)
     idc = LogicalForeignField(model=IDC, allow_null=False, allow_blank=False)
-    host = LogicalForeignField(
-        model=Host,
-        exclude_fields=['password'],
-        allow_null=True,
-        allow_blank=True)
+    # host = LogicalForeignField(
+    #     model=Host,
+    #     exclude_fields=['password'],
+    #     allow_null=True,
+    #     allow_blank=True)
 
     size = DisKSizeField()
 

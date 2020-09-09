@@ -17,8 +17,8 @@ def linux_collector_factory_run_with_process(addr: List, pb: List, log_str, extr
             rst = future.result()
             return rst
     except Exception as e:
-        logger.error(f"unable to execute {log_str}, err{e}")
-        raise Exception(f"unable to execute {log_str}, err{e}")
+        logger.error(f"unable to execute {log_str}, err: {e}")
+        raise Exception(f"unable to execute {log_str}, err: {e}")
 
 
 class CollectorFactory:
@@ -125,6 +125,6 @@ class LinuxCollector(Collector):
         for host, result in self._res.host_unreachable.items():
             self._result_raw['unreachable'][host] = {}
             for task_name, fact in result.items():
-                raise Exception(f'failed to execute task{task_name}, err: host:{host} unreachable')
+                raise Exception(f'failed to execute task: {task_name}, err: host:{host} unreachable')
                 # if not fact._result:
                 #     break

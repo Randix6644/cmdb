@@ -27,9 +27,9 @@ class Disk(DisplayModel):
         null=False,
         blank=False,
         verbose_name='机房')
-    host = models.CharField(
-        db_index=True,
-        null=True,
-        blank=True,
-        max_length=32,
-        verbose_name='主机UUID')
+    # host = models.CharField(
+    #     db_index=True,
+    #     null=True,
+    #     blank=True,
+    #     max_length=32,
+    #     verbose_name='主机UUID')

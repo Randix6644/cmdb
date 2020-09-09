@@ -57,7 +57,7 @@ class PlaybookExecutor:
             variable_manager,
             loader,
             passwords,
-            timeout=20):
+            timeout=30):
         self._playbooks = playbooks
         self._inventory = inventory
         self._variable_manager = variable_manager

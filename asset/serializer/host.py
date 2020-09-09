@@ -3,6 +3,7 @@ from utils import generate_unique_uuid, hash_string, logger
 from typing import List
 from common.serializers import *
 from common.fields import *
+from utils import CreateObjectError
 from monitor import *
 from . import *
 from ..models import *
@@ -71,7 +72,8 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
     @staticmethod
     def get_disks(obj):
         host_uuid = obj.uuid
-        ins = Disk.dao.get_queryset(host=host_uuid)
+        disk_ids = DiskHost.dao.get_field_value('disk_id', host_id=host_uuid)
+        ins = Disk.dao.get_queryset().filter(uuid__in=disk_ids)
         serializer = DiskSerializer(
             ins,
             standalone=True,
@@ -122,8 +124,10 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
             "password": password,
             "server": ip,
             "sshport": ssh_port}
+        print(extra_vars)
         linux_collector_factory_run_with_process([addr], [init], 'host initialization', extra_vars, user=user)
-        host_info = linux_collector_factory_run_with_process([addr], [facts], 'host data collection', extra_vars, user=user)
+        host_info = linux_collector_factory_run_with_process([addr], [facts], 'host data collection',
+                                                             extra_vars, user=user)
         return host_info
 
     def get_creation_kwargs(self):
@@ -137,7 +141,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
         cpu = host_info['success'][ip]['cores']
         ip_set = host_info['success'][ip]['ip']
         ip_set.append(ip)
-        ip_set = list(set(ip_set))
+        ip_set = sorted(set(ip_set), key=ip_set.index)
         model = str(host_info['success'][ip]['cpu'][2])
         mem = host_info['success'][ip]['ram']
         hard_disk_set = host_info['success'][ip]['disk']
@@ -171,8 +175,7 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
                 'bandwidth': bandwidth,
                 'status': IPStatusMapping.index('已绑定'),
                 'parent': parent,
-                'host': host,
-                # 'used_to_sync': True
+                'host': host
             })
         # 用户输入的ip 最后append进来的， 用来作同步用
         ip_kwargs[-1]['used_to_sync'] = True
@@ -182,7 +185,6 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
     def parse_disk_info(idc: str, host: str, disk_info: dict) -> List[dict]:
         disks = []
         logger.debug(f"Parsing disk info, disk_info:{disk_info}")
-        print(f"Parsing disk info, disk_info:{disk_info}")
         disk_keys = [k for k in disk_info if k.startswith(
             "vd") or k.startswith('sd')]
         for k in disk_keys:
@@ -208,15 +210,26 @@ class HostSerializer(BulkSerializerMixin, ManageSerializer):
 
     @staticmethod
     def create_disks(disk_set: List[dict]):
-        Disk.dao.bulk_create_obj(disk_set)
+        logger.debug(f'creating disks: {disk_set}')
+        # Disk.dao.bulk_create_obj(disk_set)
+        for d in disk_set:
+            host_uuid = d.pop('host')
+            disk_uuid = d.get('uuid')
+            # 一个磁盘可能被多台机器使用，lvm
+            disk_obj = Disk.dao.get_queryset(uuid=disk_uuid, empty=True)
+            if not disk_obj:
+                Disk.dao.create_obj(**d)
+            DiskHost.dao.create_obj(host_id=host_uuid, disk_id=disk_uuid)
 
     @staticmethod
     def create_ips(ip_set: List[dict]):
         # 拿最后一个元素出来， 即本次创建主机用来同步的ip
         synced_ip_kwargs = ip_set[-1]
-        sync_ip = IP.dao.get_queryset(address=synced_ip_kwargs.get('address'), host=synced_ip_kwargs.get('host'), empty=True)
-        # 查看此ip 是否以前存在解绑过的， 修改状态和标识即可。
+        sync_ip = IP.dao.get_queryset(address=synced_ip_kwargs.get('address'), type=IPTypeMapping.index('外网'), empty=True)
+        # 查看此ip 是否以前存在解绑过的， 修改状态和标识即可。 如果是内网网址，通过定时任务删除， 内网不存在解绑，只可能是变更Ip.
+        # 即再同步任务时序检查内网ip是否变更，入变更需将原来的内网IP删掉。（还没写）
         if sync_ip:
-            IP.dao.update_obj(sync_ip[0], used_to_sync=True, status=IPStatusMapping.index('已绑定'))
+            IP.dao.update_obj(sync_ip[0], used_to_sync=True, status=IPStatusMapping.index('已绑定'), host=synced_ip_kwargs.get('host'))
             ip_set.pop()
+        logger.debug(f'creating ips: {ip_set}')
         IP.dao.bulk_create_obj(ip_set)

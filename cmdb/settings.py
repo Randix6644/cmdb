@@ -38,7 +38,7 @@ if not os.path.exists(LOG_DIR):
 SECRET_KEY = CFG.get('secret', 'secret_key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -216,7 +216,7 @@ LOGGING = {
         # django 使用的日志器
         'django': {
             'handlers': ['console', 'default', 'error'],
-            'level': 'INFO',
+            'level': 'ERROR',
             # 是否向更高级别的日志器传递
             'propagate': True
         }

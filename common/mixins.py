@@ -7,7 +7,7 @@ from django.conf import settings
 from rest_framework import exceptions, status
 from utils import logger
 import sys
-
+import re
 
 __all__ = [
     'ListModelMixin',

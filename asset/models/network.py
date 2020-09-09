@@ -46,7 +46,7 @@ class IP(ManageModel):
         else:
             data['type'] = IPTypeMapping.index('外网')
             if IP.dao.get_queryset(address=addr, empty=True):
-                raise Exception(f'ip already exist{addr}')
+                raise Exception(f'ip already exist: {addr}')
         used_to_sync = data.get('used_to_sync')
         if used_to_sync:
             r = IP.dao.get_queryset(used_to_sync=True, host=data.get('host')).values()

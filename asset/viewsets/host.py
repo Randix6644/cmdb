@@ -31,3 +31,4 @@ class HostViewSet(HostAbstractViewSet):
     queryset = Host.objects.all()
     serializer_class = HostSerializer
     lookup_field = 'uuid'
+    query_param_disallowed = ['cpu']

@@ -68,23 +68,6 @@ class MonitorSync(BaseTask):
         }
         return kwargs
 
-    # @staticmethod
-    # def disk_monitor_data_parser(s):
-    #     data_list = s.split(',')
-    #     data_list = data_list[:-1]
-    #     print(f'fucking data_lst {data_list}')
-    #     length = len(data_list)
-    #     d = {}
-    #     for i in range(0, length):
-    #         if i % 4 == 0:
-    #             if '\n' in data_list[i]:
-    #                 data_list[i] = data_list[i].replace('\n', '')
-    #             d[data_list[i]] = {}
-    #             d[data_list[i]]['disk_usage'] = data_list[i + 1]
-    #             d[data_list[i]]['disk_avail'] = data_list[i + 2]
-    #             d[data_list[i]]['disk_used_percent'] = float(data_list[i + 3].replace('%', '')) / 100
-    #     return d
-
     @staticmethod
     def disk_monitor_data_parser(s):
         s = s.replace('\n', ' ')

@@ -6,3 +6,4 @@ from .project import *
 from .network import *
 from .health import *
 from .mapping import *
+from .disk_host import *

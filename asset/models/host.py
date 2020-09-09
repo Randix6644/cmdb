@@ -3,6 +3,7 @@ from .mapping import DiskStatusMapping, IPStatusMapping
 from common.models import ManageModel
 from .network import IP
 from .disk import Disk
+from .disk_host import DiskHost
 
 
 __all__ = ['Host']
@@ -36,7 +37,9 @@ class Host(ManageModel):
     idc = models.CharField(max_length=32, verbose_name='所在机房')
 
     def post_delete(self):
-        dq = Disk.dao.get_queryset(host=self.uuid)
-        Disk.dao.bulk_update_obj(dq, host=None, status=DiskStatusMapping.index('空闲'))
+        disk_ids = DiskHost.dao.get_field_value('disk_id', host_id=self.uuid)
+        dq = Disk.dao.get_queryset().filter(uuid__in=disk_ids)
+        Disk.dao.bulk_update_obj(dq, status=DiskStatusMapping.index('空闲'))
+        DiskHost.dao.bulk_delete_obj(host_id=self.uuid)
         iq = IP.dao.get_queryset(host=self.uuid)
         IP.dao.bulk_update_obj(iq, host=None, status=IPStatusMapping.index('空闲'), used_to_sync=False)

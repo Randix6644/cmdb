@@ -20,12 +20,22 @@ class QueryFilterBackend(BaseFilterBackend):
         '$': 'iendswith'
     }
 
+    def check_disallowed_query_param(self, query_terms, view):
+        if hasattr(view, 'query_param_disallowed'):
+            disallowed_query_fields = view.query_param_disallowed
+            for param in query_terms:
+                for qt in self._query_types.keys():
+                    ls = param.split(qt)
+                    field = ls[0]
+                    assert field not in disallowed_query_fields, f'{field} not allowed in this query'
+
     def filter_queryset(self, request, queryset, view):
         """
         过滤器的入口
         """
         query_fields = self._get_query_fields(view, request)
         query_terms = self._get_query_terms(request)
+        self.check_disallowed_query_param(query_terms, view)
 
         if not query_fields or not query_terms:
             return queryset
